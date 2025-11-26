@@ -1,2 +1,2 @@
 # Golf-Bag-Manager
-This application is used to add, remove, and view the clubs in your golf bag.
+This is my first project in C#. What was most vauable to me for this project was learning the syntax and implementation of the C# langueage while lso practicing using Claude for testing and debugging, I feel like I leanred many valuable skills and am looking forward to evolving my skills in this language to make me a better programmer.
