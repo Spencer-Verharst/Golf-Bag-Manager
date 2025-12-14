@@ -24,7 +24,6 @@ namespace GolfBagManager
                             Console.WriteLine("\nAdding a new club to your bag...");
 
                             string? type = "";
-
                             while (string.IsNullOrEmpty(type))
                             {
                                 Console.Write("What type of club (Driver, Wood, Iron, Putter...): ");
@@ -37,7 +36,6 @@ namespace GolfBagManager
                             }
 
                            string? brand = "";
-
                            while (string.IsNullOrEmpty(brand))
                             {
                                 Console.Write("What's your clubs brand: ");
@@ -51,7 +49,6 @@ namespace GolfBagManager
 
                             int distance = 0;
                             bool distanceSuccess = false;
-
                             while (!distanceSuccess)
                             {
                                 Console.Write("How far does this club go (Yards): ");
@@ -66,11 +63,10 @@ namespace GolfBagManager
                             }
 
                             myBag.AddClub(type, brand, distance);
-
                             break;
+
                         case 2:
                             string? deleteType = "";
-
                             while(string.IsNullOrWhiteSpace(deleteType))
                             {
                                 Console.Write("\nWhat club do you want to remove: ");
@@ -83,23 +79,24 @@ namespace GolfBagManager
                             }
 
                             myBag.RemoveClub(deleteType);
-
                             break;
+
                         case 3:
                             Console.WriteLine($"\nClubs: {myBag.GetNumOfClubs()}\n");
                             break;
+
                         case 4:
                             Console.WriteLine("\n========== Your Golf Bag ==========");
                             Console.WriteLine($"Clubs: {myBag.GetNumOfClubs()}/14\n");
-
                             myBag.DisplayBag();
-
                             Console.WriteLine("===================================\n");
                             break;
+
                         case 5:
                             running = false;
                             Console.WriteLine("\nThanks for using Golf Bag Manager!\n");
                             break;
+
                         default:
                             Console.WriteLine("\nNot a proper choice.\n");
                             break;
@@ -331,3 +328,4 @@ Whats your choice: 5
 Thanks for using Golf Bag Manager!
 
  */
+
