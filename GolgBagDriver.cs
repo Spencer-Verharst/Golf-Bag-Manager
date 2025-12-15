@@ -7,6 +7,7 @@ namespace GolfBagManager
         {
             GolfBag myBag = new GolfBag();
             bool running = true;
+
             while (running)
             {
                 Console.WriteLine("1:   Add Club");
@@ -23,61 +24,14 @@ namespace GolfBagManager
                         case 1:
                             Console.WriteLine("\nAdding a new club to your bag...");
 
-                            string? type = "";
-                            while (string.IsNullOrEmpty(type))
-                            {
-                                Console.Write("What type of club (Driver, Wood, Iron, Putter...): ");
-                                type = Console.ReadLine();
-
-                                if (string.IsNullOrWhiteSpace(type))
-                                {
-                                    Console.WriteLine("\nError: Club type cannot be empty.\n");
-                                }
-                            }
-
-                           string? brand = "";
-                           while (string.IsNullOrEmpty(brand))
-                            {
-                                Console.Write("What's your clubs brand: ");
-                                brand = Console.ReadLine();
-
-                                if (string.IsNullOrWhiteSpace(brand))
-                                {
-                                    Console.WriteLine("\nError: Club brand cannot be empty.\n");
-                                }
-                            }
-
-                            int distance = 0;
-                            bool distanceSuccess = false;
-                            while (!distanceSuccess)
-                            {
-                                Console.Write("How far does this club go (Yards): ");
-                                if (int.TryParse(Console.ReadLine(), out distance) && distance > 0)
-                                {
-                                    distanceSuccess = true;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("\nError: Distance must be a positive number.\n");
-                                }
-                            }
-
+                            string type = GetValidClub("What type of club (Driver, Wood, Iron, Putter...): ", "Club type cannot be empty.");
+                            string brand = GetValidClub("What's your clubs brand: ", "Club brand cannot be empty.");
+                            int distance = GetValidDistance("How far does this club go (Yards): ", "Distance must be a positive number.");
                             myBag.AddClub(type, brand, distance);
                             break;
 
                         case 2:
-                            string? deleteType = "";
-                            while(string.IsNullOrWhiteSpace(deleteType))
-                            {
-                                Console.Write("\nWhat club do you want to remove: ");
-                                deleteType = Console.ReadLine();
-
-                                if (string.IsNullOrWhiteSpace(deleteType))
-                                {
-                                    Console.WriteLine("\nError: Please enter a club type that exists.\n");
-                                }
-                            }
-
+                            string deleteType = GetValidClub("What club do you want to remove: ","Please enter a club type that exists.");
                             myBag.RemoveClub(deleteType);
                             break;
 
@@ -107,6 +61,46 @@ namespace GolfBagManager
                     Console.WriteLine("\nInvalid input. Please enter a number.\n");
                 }
             }
+        }
+
+        static string GetValidClub(string prompt, string errorMessage)
+        {
+            string? input = "";
+
+            while (string.IsNullOrWhiteSpace(input))
+            {
+                Console.Write(prompt);
+                input = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    Console.WriteLine($"\nError: {errorMessage}\n");
+                }
+            }
+
+            return input;
+        }
+
+        static int GetValidDistance(string prompt, string errorMessage)
+        {
+            int value = 0;
+            bool isValid = false;
+
+            while (!isValid)
+            {
+                Console.Write(prompt);
+
+                if (int.TryParse(Console.ReadLine(), out value) && value > 0)
+                {
+                    isValid = true;
+                }
+                else
+                {
+                    Console.WriteLine($"\nError: {errorMessage}\n");
+                }
+            }
+
+            return value;
         }
     }
 }
@@ -328,4 +322,5 @@ Whats your choice: 5
 Thanks for using Golf Bag Manager!
 
  */
+
 
