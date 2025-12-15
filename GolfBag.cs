@@ -31,7 +31,7 @@ namespace GolfBagManager
             {
                 if (club.Type.Equals(typeRemove, StringComparison.OrdinalIgnoreCase) == true)
                 {
-
+                    clubs.Remove(club);
                     Console.WriteLine($"\n{typeRemove} removed successfully.\n");
                     return true;
                 }
@@ -61,3 +61,4 @@ namespace GolfBagManager
         }
     }
 }
+
