@@ -5,4 +5,5 @@ Edits
 * Made it a list implementation instead of an array
 * Driver is where the questions are asked and function is where the club is added to the bag instead of the function doing both
 * Input validation is instant instead of getting kicked back to main menu
+* DRY implementation
 * Style and spacing
