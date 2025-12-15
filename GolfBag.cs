@@ -8,7 +8,7 @@ namespace GolfBagManager
 
         public GolfBag()
         {
-            clubs = new List<Club>();
+            clubs = new List<Club>(maxClubs);
         }
 
         public bool AddClub(string typeInput, string brandInput, int distanceInput)
@@ -61,4 +61,5 @@ namespace GolfBagManager
         }
     }
 }
+
 
