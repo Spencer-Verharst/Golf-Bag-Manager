@@ -50,9 +50,7 @@ namespace CS_GolfBagManager
                 }
             }
         }
-
-        //if I add club with a number can have repeated clubs besides driver and putter
-        // can also put anything in as a type
+        
         private void HandleAddClub()
         {
             if (_myBag.IsFull())
@@ -137,3 +135,4 @@ namespace CS_GolfBagManager
         }
     }
 }
+
