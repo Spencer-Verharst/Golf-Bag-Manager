@@ -1,65 +1,53 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 namespace GolfBagManager
 {
-    class GolfBag
+    public class GolfBag
     {
-        private List<Club> clubs;
-        private const int maxClubs = 14;
+        private readonly List<Club> _clubs;
+        private const int MAX_CLUBS = 14;
 
         public GolfBag()
         {
-            clubs = new List<Club>(maxClubs);
+            _clubs = new List<Club>();
         }
 
-        public bool AddClub(string typeInput, string brandInput, int distanceInput)
-        {
-            if (clubs.Count >= maxClubs)
-            {
-                Console.WriteLine("\nGolf Bag already has 14 clubs.\n");
-                return false;
-            }
+        public IReadOnlyList<Club> GetAllClubs() => _clubs.AsReadOnly();
 
-            clubs.Add(new Club(typeInput, brandInput, distanceInput));
-        
-            Console.WriteLine($"\n{typeInput} added to bag.\n");
+        public int GetClubCount() => _clubs.Count;
+
+        public bool IsFull() => _clubs.Count >= MAX_CLUBS;
+
+        public bool AddClub(Club club)
+        {
+           if(IsFull())
+                return false;
+
+            _clubs.Add(club);
             return true;
         }
 
         public bool RemoveClub(string typeRemove)
         {
-            foreach(var club in clubs)
-            {
-                if (club.Type.Equals(typeRemove, StringComparison.OrdinalIgnoreCase) == true)
-                {
-                    clubs.Remove(club);
-                    Console.WriteLine($"\n{typeRemove} removed successfully.\n");
-                    return true;
-                }
-            }
+            var club = FindClubByType(typeRemove);
 
-            Console.WriteLine($"\n{typeRemove} not found in bag.\n");
-            return false;
+            if (club == null)
+                return false;
+
+            _clubs.Remove(club);
+            return true;
         }
 
-        public void DisplayBag()
+        public bool FindClubInBag(string clubType)
         {
-            if (clubs.Count == 0)
-            {
-                Console.WriteLine("\nYour golf bag is empty.\n");
-                return;
-            }
-
-            for (int i = 0; i < clubs.Count; i++)
-            {
-                Console.WriteLine($"{i + 1}. {clubs[i]}");
-            }
+            return FindClubByType(clubType) != null;
         }
 
-        public int GetNumOfClubs()
+        private Club? FindClubByType(string clubType)
         {
-            return clubs.Count;
+            return _clubs.FirstOrDefault(c =>
+                c.Type.Equals(clubType, StringComparison.OrdinalIgnoreCase));
         }
     }
 }
-
-
