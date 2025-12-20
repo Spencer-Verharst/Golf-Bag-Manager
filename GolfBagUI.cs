@@ -50,8 +50,7 @@ namespace CS_GolfBagManager
 
             Console.WriteLine("===================================\n");
         }
-
-        //only ask for correct club once then if entered incorrectly again just goes to brand
+        
         public string GetValidClub(string prompt, string errorMessage)
         {
             string? input = "";
@@ -130,3 +129,4 @@ namespace CS_GolfBagManager
         }
     }
 }
+
