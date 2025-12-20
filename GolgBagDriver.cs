@@ -1,109 +1,20 @@
 using System;
+using CS_GolfBagManager;
 namespace GolfBagManager
 {
     class TestingBag
     {
         static void Main()
         {
-            GolfBag myBag = new GolfBag();
-            bool running = true;
+            var bag = new GolfBag();
+            var ui = new GolfBagUI();
+            var controller = new GolfBagController(bag, ui);
 
-            while (running)
-            {
-                Console.WriteLine("1:   Add Club");
-                Console.WriteLine("2:   Remove Club");
-                Console.WriteLine("3:   Get Number of Clubs");
-                Console.WriteLine("4:   Display Bag");
-                Console.WriteLine("5:   QUIT");
-                Console.Write("Whats your choice: ");
-
-                if (int.TryParse(Console.ReadLine(), out int choice))
-                {
-                    switch (choice)
-                    {
-                        case 1:
-                            Console.WriteLine("\nAdding a new club to your bag...");
-
-                            string type = GetValidClub("What type of club (Driver, Wood, Iron, Putter...): ", "Club type cannot be empty.");
-                            string brand = GetValidClub("What's your clubs brand: ", "Club brand cannot be empty.");
-                            int distance = GetValidDistance("How far does this club go (Yards): ", "Distance must be a positive number.");
-                            myBag.AddClub(type, brand, distance);
-                            break;
-
-                        case 2:
-                            string deleteType = GetValidClub("What club do you want to remove: ","Please enter a club type that exists.");
-                            myBag.RemoveClub(deleteType);
-                            break;
-
-                        case 3:
-                            Console.WriteLine($"\nClubs: {myBag.GetNumOfClubs()}\n");
-                            break;
-
-                        case 4:
-                            Console.WriteLine("\n========== Your Golf Bag ==========");
-                            Console.WriteLine($"Clubs: {myBag.GetNumOfClubs()}/14\n");
-                            myBag.DisplayBag();
-                            Console.WriteLine("===================================\n");
-                            break;
-
-                        case 5:
-                            running = false;
-                            Console.WriteLine("\nThanks for using Golf Bag Manager!\n");
-                            break;
-
-                        default:
-                            Console.WriteLine("\nNot a proper choice.\n");
-                            break;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("\nInvalid input. Please enter a number.\n");
-                }
-            }
-        }
-
-        static string GetValidClub(string prompt, string errorMessage)
-        {
-            string? input = "";
-
-            while (string.IsNullOrWhiteSpace(input))
-            {
-                Console.Write(prompt);
-                input = Console.ReadLine();
-
-                if (string.IsNullOrWhiteSpace(input))
-                {
-                    Console.WriteLine($"\nError: {errorMessage}\n");
-                }
-            }
-
-            return input;
-        }
-
-        static int GetValidDistance(string prompt, string errorMessage)
-        {
-            int value = 0;
-            bool isValid = false;
-
-            while (!isValid)
-            {
-                Console.Write(prompt);
-
-                if (int.TryParse(Console.ReadLine(), out value) && value > 0)
-                {
-                    isValid = true;
-                }
-                else
-                {
-                    Console.WriteLine($"\nError: {errorMessage}\n");
-                }
-            }
-
-            return value;
+            controller.Run();
         }
     }
 }
+
 /*
 1:   Add Club
 2:   Remove Club
@@ -322,5 +233,6 @@ Whats your choice: 5
 Thanks for using Golf Bag Manager!
 
  */
+
 
 
