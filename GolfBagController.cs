@@ -93,8 +93,7 @@ namespace CS_GolfBagManager
                 _ => (null, null)
             };
         }
-
-
+        
         private void HandleRemoveClub()
         {
             if (_myBag.GetClubCount() == 0)
@@ -135,4 +134,5 @@ namespace CS_GolfBagManager
         }
     }
 }
+
 
