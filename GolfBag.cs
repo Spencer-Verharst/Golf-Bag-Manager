@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 namespace GolfBagManager
 {
-    public class GolfBag
+    public class GolfBag : IGolfBag
     {
         private readonly List<Club> _clubs;
         private const int MAX_CLUBS = 14;
