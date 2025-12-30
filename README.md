@@ -11,4 +11,7 @@ Edits Complete 12/15/25
 Edits 12/20/25
 * Complete project change implemeting more OOP and SOLID principles
 * Two files added UI and Controller for better single use
-  
+
+Edits 12/29/25
+* 3 interface files addes for constructor dependency injection
+* Club factory now its own file
