@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 using GolfBagManager;
 
 namespace CS_GolfBagManager
 {
     public class GolfBagController
     {
-        private readonly GolfBag _myBag;
-        private readonly GolfBagUI _ui;
-        private readonly ClubFactory _clubFactory;
+        private readonly IGolfBag _myBag;
+        private readonly IGolfBagUI _ui;
+        private readonly IClubFactory _clubFactory;
 
-        public GolfBagController(GolfBag myBag, GolfBagUI ui)
+        public GolfBagController(IGolfBag myBag, IGolfBagUI ui, IClubFactory clubFactory)
         {
             _myBag = myBag;
             _ui = ui;
-            _clubFactory = new ClubFactory();
+            _clubFactory = clubFactory;
         }
 
         public void Run()
@@ -50,7 +45,10 @@ namespace CS_GolfBagManager
                 }
             }
         }
-        
+
+        //if I add club with a number can have repeated clubs besides driver and putter
+        // can also put anything in as a type
+        //Want to make it to where putter doesnt need a distance
         private void HandleAddClub()
         {
             if (_myBag.IsFull())
@@ -70,9 +68,9 @@ namespace CS_GolfBagManager
 
             Club? newClub = _clubFactory.CreateClub(clubType, clubBrand, clubDistance, clubNumber, wedgeType);
 
-            if(newClub != null && !_myBag.FindClubInBag(clubType) && _myBag.AddClub(newClub))
+            if (newClub != null && !_myBag.FindClubInBag(newClub.Type) && _myBag.AddClub(newClub))
             {
-                _ui.DisplayMessage($"{clubType} added to your bag!\n");
+                _ui.DisplayMessage($"{newClub.Type} added to your bag!\n");
             }
             else
             {
@@ -93,7 +91,8 @@ namespace CS_GolfBagManager
                 _ => (null, null)
             };
         }
-        
+
+
         private void HandleRemoveClub()
         {
             if (_myBag.GetClubCount() == 0)
@@ -134,5 +133,3 @@ namespace CS_GolfBagManager
         }
     }
 }
-
-
