@@ -1,13 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GolfBagManager;
 
 namespace GolfBagManager
 {
-    public class ClubFactory : IClubFactory  // <-- Added interface
+    public class ClubFactory : IClubFactory  
     {
         public Club? CreateClub(string type, string brand, int distance, int? number = null, string? wedgeType = null)
         {
@@ -23,3 +20,4 @@ namespace GolfBagManager
         }
     }
 }
+
