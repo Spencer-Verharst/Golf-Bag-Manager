@@ -70,21 +70,6 @@ namespace GolfBagManager
         public GenericClub(string type, string brand, int distance)
             : base(type, brand, distance) { }
     }
-
-    public class ClubFactory
-    {
-        public Club? CreateClub(string type, string brand, int distance, int? number = null, string? wedgeType = null)
-        {
-            return type.ToLower() switch
-            {
-                "driver" => new Driver(brand, distance),
-                "putter" => new Putter(brand, distance),
-                "wood" => new Wood(brand, distance, number ?? 3),
-                "iron" => new Iron(brand, distance, number ?? 5),
-                "wedge" => new Wedge(brand, distance, wedgeType ?? "PW"),
-                _ => new GenericClub(type, brand, distance)
-            };
-        }
-    }
 }
+
 
