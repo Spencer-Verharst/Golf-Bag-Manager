@@ -1,14 +1,17 @@
 using System;
 using CS_GolfBagManager;
+
 namespace GolfBagManager
 {
     class TestingBag
     {
         static void Main()
         {
-            var bag = new GolfBag();
-            var ui = new GolfBagUI();
-            var controller = new GolfBagController(bag, ui);
+            IGolfBag bag = new GolfBag();
+            IGolfBagUI ui = new GolfBagUI();
+            IClubFactory factory = new ClubFactory();
+
+            var controller = new GolfBagController(bag, ui, factory);
 
             controller.Run();
         }
@@ -313,6 +316,7 @@ Whats your choice: 5
 Thank you for using the GolfBag Manager!
 
  */
+
 
 
 
