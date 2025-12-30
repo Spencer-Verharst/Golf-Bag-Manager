@@ -1,14 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GolfBagManager;
 
 namespace CS_GolfBagManager
 {
-    public class GolfBagUI
+    public class GolfBagUI : IGolfBagUI
     {
         public int DisplayMenuAndGetMenuOption()
         {
@@ -50,7 +46,7 @@ namespace CS_GolfBagManager
 
             Console.WriteLine("===================================\n");
         }
-        
+
         public string GetValidClub(string prompt, string errorMessage)
         {
             string? input = "";
@@ -129,4 +125,3 @@ namespace CS_GolfBagManager
         }
     }
 }
-
